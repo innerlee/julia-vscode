@@ -58,5 +58,14 @@
 		],
 		"description": "Macro declaration",
 		"scope": "source.julia"
+	},
+	"Folding Region": {
+		"prefix": "region",
+		"body": [
+			"#region $0",
+			"#endregion"
+		],
+		"description": "Folding Region",
+		"scope": "source.julia"
 	}
 }
