@@ -5,6 +5,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as process from 'process';
 var exec = require('child-process-promise').exec;
+var which = require('which')
 
 let g_context: vscode.ExtensionContext = null;
 let g_settings: settings.ISettings = null;
@@ -36,10 +37,12 @@ export async function getJuliaExePath() {
             for (let path of pathsToSearch) {
                 try {
                     var res = await exec(`"${path}" -v`);
-
                     actualJuliaExePath = path;
+                    if (actualJuliaExePath == 'julia') {
+                        actualJuliaExePath = which.sync('julia')
+                    }
                     foundJulia = true;
-                    break;                    
+                    break;
                 }
                 catch(e) {
                 }
